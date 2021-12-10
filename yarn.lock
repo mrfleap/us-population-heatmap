@@ -6967,11 +6967,6 @@ last-call-webpack-plugin@^3.0.0:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
 
-leaflet-glify-layer@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/leaflet-glify-layer/-/leaflet-glify-layer-0.0.6.tgz#13610e05a5a7d94cdd21366e542b6b044140023b"
-  integrity sha512-3cBC23I1KrAHmmWAZCm179z+TrZMM0jWlA+2jKNGEwWPn5opec5hT05+Sm82eOiTK2GXAm4nnSi7WxYVrkeUvQ==
-
 leaflet.glify@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/leaflet.glify/-/leaflet.glify-3.2.0.tgz#0bd1157e2ac6e6aa70f20adf26b736d9104363be"

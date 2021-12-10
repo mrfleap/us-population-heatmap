@@ -3,14 +3,11 @@ import 'leaflet/dist/leaflet.css';
 
 import L from 'leaflet';
 import glify from 'leaflet.glify'
-// import 'leaflet-glify-layer';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 import { MapContainer, TileLayer, Marker, Popup, useMap, GeoJSON } from 'react-leaflet'
-
-import WaPop from './assets/wa_pop';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -25,20 +22,31 @@ function FocusScroll() {
   return null;
 }
 
+let called = false;
+
 function GLGeoJson() {
   const map = useMap();
-  // const myLayer = L.glify.layer({
-  //   geojson: WaPop,
-  // });
-  // myLayer.addTo(map);
-  let geo = {
-      "type": "FeatureCollection",
-      "features": WaPop["features"]
-    }
-  L.glify.shapes({
-    map,
-    data: geo,
-  });
+  if (called) return null
+  called = true;
+  console.log("call")
+  
+  fetch("data/pop.json", {
+  headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+  }}).then((r) => {
+    return r.json();
+  }).then((geojson) => {
+    L.glify.shapes({
+      map,
+      data: geojson,
+      color: (_, feature) => {
+        let rgb = feature.properties.rgb;
+        rgb.a = 0.4;
+        return rgb;
+      }
+    }); 
+    })
   return null;
 }
 
